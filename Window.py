@@ -34,7 +34,7 @@ class GlobalWindow(Screen):
         self.add_widget(conteiner)
 
 class Window(Screen):
-    def returnF(self,windowController):
+    def startWindowF(self,windowController):
         return lambda e:startWindow(self, GlobalWindow, windowController)
 
     def __init__(self,windowController,children=None,**kwargs):
@@ -46,7 +46,7 @@ class Window(Screen):
         if children:
             box.add_widget(children)
         btn=Button(text="return",opacity=0,size_hint_y=0)
-        btn.bind(on_press=self.returnF(windowController=windowController))
+        btn.bind(on_press=self.startWindowF(windowController=windowController))
         animation2.start(btn)
         children.read(lambda widget:Clock.schedule_once(startAnimation(animation2,widget),0.5))
 
